@@ -8,6 +8,9 @@ import requests
 import util
 # parse 2011 and after 2015
 #curl -H "Authorization: token " -X GET https://api.github.com/rate_limit
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 
 def readtoken(tokenfile):
     with open(tokenfile) as f:
@@ -57,9 +60,9 @@ for file in allfiles:
                             message = c["message"]
                         if re.search(r'^(?=.*(bug|issue|problem|error))(?=.*(fix|solve)).+$', message, re.IGNORECASE): 
                             if year == "2011":
-                                temCommits.add(apiurl + " " + c[0])
+                                temCommits.add(apiurl + "==>" + c[0] + " [" + message + "]")
                             else:
-                                temCommits.add(apiurl + " " + c["sha"])
+                                temCommits.add(apiurl + "==>" + c["sha"]+ " [" + message + "]")
 commitMap = util.changeToMap(temCommits)         
 for apiurl in commitMap:                                
     headers = {'Authorization': 'token ' + tokenKey}
@@ -78,7 +81,7 @@ for apiurl in commitMap:
         if language == "Java":
             for commitsha in commitMap[apiurl]:
                 print(url + " " + commitsha)
-                commitN = url + " " + commitsha                                                      
+                commitN = url.replace("//","//api.").replace(".com/",".com/repos/") + " " + commitsha                                                      
                 with open(writepath + "/"  + year + "/" + month + ".txt", "a") as writefile:
                     writefile.write(commitN)
                     writefile.write("\n")              

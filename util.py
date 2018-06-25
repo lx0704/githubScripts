@@ -30,8 +30,8 @@ def getRemaining(tokenKey):
 def changeToMap(tempCommits):
     commitMap = dict()
     for commit in tempCommits:                                
-        url = commit.split(" ")[0]
-        commitsha = commit.split(" ")[1].strip()
+        url = commit.split("==>")[0]
+        commitsha = commit.split("==>")[1]
         if url not in commitMap:
             commits = set()
             commits.add(commitsha)
