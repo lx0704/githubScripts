@@ -6,6 +6,7 @@ import sys
 import urllib
 import requests
 import util
+import time
 # parse 2011 and after 2015
 #curl -H "Authorization: token " -X GET https://api.github.com/rate_limit
 reload(sys)
@@ -55,9 +56,11 @@ for file in allfiles:
                     for c in commits:
                         message = ""
                         if year == "2011":
-                            message = c[2]
+                            if len(c) > 2:
+                                message = c[2]
                         else:
-                            message = c["message"]
+                            if "message" in c:
+                                message = c["message"]
                         if re.search(r'^(?=.*(bug|issue|problem|error))(?=.*(fix|solve)).+$', message, re.IGNORECASE): 
                             if year == "2011":
                                 temCommits.add(apiurl + "==>" + c[0] + " [" + message + "]")
