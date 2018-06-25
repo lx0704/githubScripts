@@ -5,76 +5,81 @@ import os
 import sys
 import urllib
 import requests
-# parse after 2015
+import util
+# parse 2011 and after 2015
 #curl -H "Authorization: token " -X GET https://api.github.com/rate_limit
 
 def readtoken(tokenfile):
-	tokens = []
-	with open(tokenfile) as f:
-		for line in f:
-			tokens.append(line.strip())
-	return tokens
+    with open(tokenfile) as f:
+        token = ""
+        for line in f:
+            token = line.split(" ")[0]
+    return token
+
+rootpath = "/home/Xia/XiaLi/GitHubProjects/1Archive/"
+writepath = "/home/Xia/XiaLi/GitHubProjects/2Parse/commitandmessage/"
+
+year = sys.argv[1]  # 2011
+month = sys.argv[2] # 03,04...
+tokenNumber = sys.argv[3]
+
+tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
+tokenKey = readtoken(tokenfile)
+print(tokenKey)
 
 
-
-year = sys.argv[1]
-day = sys.argv[2]
-
-tokenfile = "/media/disk2/xia/GithubProjects/2Parse/scripts/parse2015/" + day + ".txt"
-
-tokens = readtoken(tokenfile)
-print(tokens)
-
-rootpath = "/media/disk2/xia/GithubProjects/1Archive/"
-writepath = "/media/disk2/xia/GithubProjects/2Parse/rawdata/"
 filepath = rootpath + year
 allfiles = os.listdir(filepath)
-tokenindex = 0
-count = 0
 filecount = 1
+temCommits = set()
+urlandCommit = set()
 for file in allfiles:
-    if day in file:
-        print(str(filecount) + " files")
-        filecount = filecount + 1
-        urlandCommit = set()
+    if year + "-" + month in file:        
         with gzip.open(filepath + "/" + file, "rb") as f:
-            
+           
             for line in f.readlines():
                 d = json.loads(line.decode("utf-8")) 
                 type = d["type"]
                         
                 if type == "PushEvent":
-                    commits = d["payload"]["commits"]
-                    temCommits = []
-                    fixing = "No"
-                    for c in commits:
-                        message = c["message"]
-                        if re.search(r'^(?=.*(bug|issue|problem|error))(?=.*(fix|solve)).+$', message, re.IGNORECASE): 
-                            temCommits.append(c["sha"])
-                            fixing = "Yes"               
-                    if fixing == "Yes":                        
-                        apiurl = d["repo"]["url"]                      
-                        headers = {'Authorization': 'token ' + tokens[tokenindex]}
-                        if count > 20:
-                            if tokenindex == len(tokens) - 1:
-                                tokenindex = 0
-                            else:
-                                tokenindex = tokenindex + 1
-                            headers = {'Authorization': 'token ' + tokens[tokenindex]}
-                            count = 1
-                        login = requests.get(apiurl, headers = headers)
-                        apiinfor = login.json()
-                        
+                    apiurl = d["repo"]["url"].replace("github.dev","github.com")
+                    commits = []
+                    if year == "2011":
+                        commits = d["payload"]["shas"]
+                    else:
+                        commits = d["payload"]["commits"]
 
-                        count = count + 1
-                        if "clone_url" in apiinfor:
-                            url = apiinfor["clone_url"]
-                            language = apiinfor["language"]
-                            if language == "Java":
-                                for commit in temCommits:
-                                    urlandCommit.add(url + " " + commit)                                 
-            for commitN in urlandCommit:                        
-                 with open(writepath + "/"  + day + ".txt", "a") as writefile:
+                    for c in commits:
+                        message = ""
+                        if year == "2011":
+                            message = c[2]
+                        else:
+                            message = c["message"]
+                        if re.search(r'^(?=.*(bug|issue|problem|error))(?=.*(fix|solve)).+$', message, re.IGNORECASE): 
+                            if year == "2011":
+                                temCommits.add(apiurl + " " + c[0])
+                            else:
+                                temCommits.add(apiurl + " " + c["sha"])
+commitMap = util.changeToMap(temCommits)         
+for apiurl in commitMap:                                
+    headers = {'Authorization': 'token ' + tokenKey}
+    remainingNumber = util.getRemaining(tokenKey)                       
+    if int(remainingNumber) < 5:            
+        while int(remainingNumber) < 5000:                  
+            time.sleep(100)                 
+            remainingNumber = util.getRemaining(tokenKey)
+            print ("remainig number is " + remainingNumber + "not enough limit, sleep a while")
+    print("remaining rate limit is:" + remainingNumber + " for " + tokenNumber)
+    login = requests.get(apiurl, headers = headers)
+    apiinfor = login.json()   
+    if "clone_url" in apiinfor:
+        url = apiinfor["clone_url"]
+        language = apiinfor["language"]
+        if language == "Java":
+            for commitsha in commitMap[apiurl]:
+                print(url + " " + commitsha)
+                commitN = url + " " + commitsha                                                      
+                with open(writepath + "/"  + year + "/" + month + ".txt", "a") as writefile:
                     writefile.write(commitN)
                     writefile.write("\n")              
 

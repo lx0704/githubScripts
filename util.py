@@ -27,5 +27,18 @@ def getRemaining(tokenKey):
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
     remainingNumber = output.split("remaining\": ")[1].split(",\n")[0]  
     return remainingNumber
+def changeToMap(tempCommits):
+    commitMap = dict()
+    for commit in tempCommits:                                
+        url = commit.split(" ")[0]
+        commitsha = commit.split(" ")[1].strip()
+        if url not in commitMap:
+            commits = set()
+            commits.add(commitsha)
+            commitMap[url] = commits
+        else:
+            commitMap[url].add(commitsha)
+    return commitMap
+
 
 
