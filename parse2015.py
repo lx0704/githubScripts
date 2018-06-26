@@ -48,21 +48,21 @@ for file in allfiles:
                 if type == "PushEvent":
                     apiurl = d["repo"]["url"].replace("github.dev","github.com")
                     commits = []
-                    if year == "2011":
+                    if "shas" in d["payload"]:
                         commits = d["payload"]["shas"]
                     else:
                         commits = d["payload"]["commits"]
 
                     for c in commits:
                         message = ""
-                        if year == "2011":
+                        if "shas" in d["payload"]:
                             if len(c) > 2:
                                 message = c[2]
                         else:
                             if "message" in c:
                                 message = c["message"]
                         if re.search(r'^(?=.*(bug|issue|problem|error))(?=.*(fix|solve)).+$', message, re.IGNORECASE): 
-                            if year == "2011":
+                            if "shas" in d["payload"]:
                                 temCommits.add(apiurl + "==>" + c[0] + " [" + message + "]")
                             else:
                                 temCommits.add(apiurl + "==>" + c["sha"]+ " [" + message + "]")
