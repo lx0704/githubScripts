@@ -37,7 +37,7 @@ year = sys.argv[1]
 partation = sys.argv[2]
 tokenNumber = sys.argv[3]
 
-tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/" + tokenNumber + ".txt"
+tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readArchivetokens/" + tokenNumber + ".txt"
 tokens = readtoken(tokenfile)
 print(tokens)
 
@@ -57,13 +57,7 @@ with open(path,'r') as file:
         apiurl = url + "/commits/" + fixcommit
         
         headers = {'Authorization': 'token ' + tokens[tokenindex]}
-        if count > 20:
-            if tokenindex == len(tokens) - 1:
-                tokenindex = 0
-            else:
-                tokenindex = tokenindex + 1
-            headers = {'Authorization': 'token ' + tokens[tokenindex]}
-            count = 1
+     
         login = requests.get(apiurl, headers = headers)
         apiinfor = login.json()
         count = count + 1
