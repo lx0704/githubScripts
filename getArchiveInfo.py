@@ -4,15 +4,15 @@ import urllib
 import sys
 import requests
 import util
+import time
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
    
 def readtoken(tokenfile):
-    tokens = []
     with open(tokenfile) as f:
         for line in f:
-            tokens.append(line.strip())
+            tokens = line.split(" ")[0]
     return tokens
 def getInfoFromFixCommit(apiinfor,fixcommit,eachPairPath,apiurl):
     message = apiinfor["commit"]["message"]
@@ -47,21 +47,26 @@ clonePath = clonerootPath + year + "/" + partation
 
 path = bugPath
 with open(path,'r') as file:
-    count = 1
-    tokenindex = 0  
+    count = 1 
     pairCount = 1     
     for line in file:         
         #print(year + " " + partation + " is processing")       
         url = line.split(" ")[0]
-        fixcommit = line.split(" ")[1]
+        fixcommit = line.split(" ")[1].strip()
         apiurl = url + "/commits/" + fixcommit
-        
-        headers = {'Authorization': 'token ' + tokens[tokenindex]}
-     
+        headers = {'Authorization': 'token ' + tokens}
+        remainingNumber = util.getRemaining(tokens)   
+
+        if int(remainingNumber) < 5:            
+                while int(remainingNumber) < 5000:                  
+                    time.sleep(100)                 
+                    remainingNumber = util.getRemaining(tokens)
+                    print ("remainig number is " + remainingNumber + "not enough limit, sleep a while")     
         login = requests.get(apiurl, headers = headers)
         apiinfor = login.json()
         count = count + 1
         if "url" in apiinfor:
+            sys.stdout.write("token remaining:" + remainingNumber + " ") 
             print("pairCount " + str(pairCount) + " " + partation + " " + tokenNumber)           
             eachPairPath = clonePath + "/" + str(pairCount)           
             util.createPath(eachPairPath)

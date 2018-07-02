@@ -10,14 +10,18 @@ def readComaretoken(tokenfile):
         tokenkey = f.read().split(" ")[0].strip()
     return tokenkey
 def readDownUrl(UrlFile):
-    buggyUrls = set()
-    fixUrls = set()
+    buggyUrls = []
+    fixUrls = []
     with open(UrlFile) as f:
         for line in f:
             if "bug file url:" in line:
-                buggyUrls.add(line.split("bug file url:")[1].strip())
+                cleanUrl = line.split("bug file url:")[1].strip()
+                if cleanUrl not in buggyUrls:
+                    buggyUrls.append(cleanUrl)
             if "fix file url:" in line:
-                fixUrls.add(line.split("fix file url:")[1].strip())
+                cleanUrlFix = line.split("fix file url:")[1].strip()
+                if cleanUrlFix not in fixUrls:
+                    fixUrls.append(cleanUrlFix)
     return list(buggyUrls),list(fixUrls)
 def cdAndWget(Dowurl, pairpath, pathName):   
     os.system("wget -q -O " + pairpath  + "/" + pathName + " " + Dowurl)

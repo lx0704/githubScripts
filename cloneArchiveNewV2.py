@@ -12,7 +12,7 @@ year = sys.argv[1]
 partation = sys.argv[2]
 tokenNumber = sys.argv[3]
 
-tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
+tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readArchivetokens/" + tokenNumber + ".txt"
 tokenKey = util.readComaretoken(tokenfile)
 print(tokenKey)
 
@@ -29,7 +29,7 @@ for file in range(1, len(allfiles) + 1):
 	
 	if (os.path.exists(downUrlPath)):
 		buggyUrls,fixUrls = util.readDownUrl(downUrlPath)
-		for i in range(0, len(buggyUrls)):			
+		for i in range(0, len(buggyUrls)):		
 			headers = {'Authorization': 'token ' + tokenKey}			
 			remainingNumber = util.getRemaining(tokenKey)		
 						
