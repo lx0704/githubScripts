@@ -37,7 +37,7 @@ year = sys.argv[1]
 partation = sys.argv[2]
 tokenNumber = sys.argv[3]
 
-tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readArchivetokens/" + tokenNumber + ".txt"
+tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
 tokens = readtoken(tokenfile)
 print(tokens)
 
@@ -67,7 +67,7 @@ with open(path,'r') as file:
         count = count + 1
         if "url" in apiinfor:
             sys.stdout.write("token remaining:" + remainingNumber + " ") 
-            print("pairCount " + str(pairCount) + " " + partation + " " + tokenNumber)           
+            print(year + " " + partation + " pairCount " + str(pairCount) + " " + partation + " " + tokenNumber)           
             eachPairPath = clonePath + "/" + str(pairCount)           
             util.createPath(eachPairPath)
             getInfoFromFixCommit(apiinfor,fixcommit,eachPairPath,url)
