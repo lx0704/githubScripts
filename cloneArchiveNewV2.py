@@ -44,15 +44,16 @@ for file in range(1, len(allfiles) + 1):
 			print("github key remaining rate limit " + remainingNumber)
 			print(eachPairPath + " " + tokenNumber + "," + str(len(allfiles)) + " files")
 			if "download_url" in requestFrombuggy and "download_url" in requestFromfix:
-			    buggyDownUrl = requestFrombuggy["download_url"]
-			    fixDownUrl = requestFromfix["download_url"]
-			    buggyversionPath = eachPairPath + "/buggy-version"
-			    fixedversionPath = eachPairPath + "/fixed-version"
-			    util.createPath(buggyversionPath)
-			    util.createPath(fixedversionPath)
-			    commonpath = buggyUrls[i].split("contents/")[1].split("?ref=")[0]
-			    util.cdAndWget(buggyDownUrl,buggyversionPath,commonpath.replace("/","."))
-			    util.cdAndWget(fixDownUrl,fixedversionPath,commonpath.replace("/","."))
+				if requestFrombuggy["download_url"] is not None:
+				    buggyDownUrl = requestFrombuggy["download_url"]
+				    fixDownUrl = requestFromfix["download_url"]
+				    buggyversionPath = eachPairPath + "/buggy-version"
+				    fixedversionPath = eachPairPath + "/fixed-version"
+				    util.createPath(buggyversionPath)
+				    util.createPath(fixedversionPath)
+				    commonpath = buggyUrls[i].split("contents/")[1].split("?ref=")[0]
+				    util.cdAndWget(buggyDownUrl,buggyversionPath,commonpath.replace("/","."))
+				    util.cdAndWget(fixDownUrl,fixedversionPath,commonpath.replace("/","."))
 			
 
 
