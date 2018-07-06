@@ -73,6 +73,6 @@ with open(path,'r') as file:
             getInfoFromFixCommit(apiinfor,fixcommit,eachPairPath,url)
             pairCount = pairCount + 1
         
-        
+print(year + " " + partation + " archiveInfo.txt DONE!!!!")        
 
 
