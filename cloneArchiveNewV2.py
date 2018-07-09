@@ -54,6 +54,7 @@ for file in range(1, len(allfiles) + 1):
 				    commonpath = buggyUrls[i].split("contents/")[1].split("?ref=")[0]
 				    util.cdAndWget(buggyDownUrl,buggyversionPath,commonpath.replace("/","."))
 				    util.cdAndWget(fixDownUrl,fixedversionPath,commonpath.replace("/","."))
+print("Buggy and fixed versions DONE!!!!!")			
 			
 
 

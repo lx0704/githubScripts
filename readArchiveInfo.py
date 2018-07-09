@@ -67,3 +67,4 @@ for file in allfiles:
                 	otherInfo.write("\n")
                 	otherInfo.write("fix file url:" + fixFileUrl)
                 	otherInfo.write("\n")
+print("Write fileDownloadUrl DONE!!!!!!")
