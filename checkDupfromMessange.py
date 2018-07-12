@@ -37,7 +37,7 @@ for year in years:
 						commitDic[fixedCommitAndMessage].append(commitPath)
 for key in commitDic.keys():
 	length = len(commitDic[key])
-	if length>0:
+	if length>1:
 		for i in range(1,length):			
 			shutil.rmtree(commitDic[key][i])
 
