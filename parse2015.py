@@ -20,14 +20,14 @@ def readtoken(tokenfile):
             token = line.split(" ")[0]
     return token
 
-rootpath = "/home/Xia/XiaLi/GitHubProjects/1Archive/"
-writepath = "/home/Xia/XiaLi/GitHubProjects/2Parse/commitandmessage/"
+rootpath = "/disk2/Xia/GitHubProjects/1Archive/"
+writepath = "/disk2/Xia/GitHubProjects/2Parse/commitandmessage/"
 
 year = sys.argv[1]  # 2011
 month = sys.argv[2] # 03,04...
 tokenNumber = sys.argv[3]
 
-tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
+tokenfile = "/disk2/Xia/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
 tokenKey = readtoken(tokenfile)
 print(tokenKey)
 

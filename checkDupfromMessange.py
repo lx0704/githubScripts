@@ -1,8 +1,9 @@
 import os
 from os import listdir
 from os.path import isfile, join
+import shutil
 
-rootPath = "/home/Xia/XiaLi/GitHubProjects/3Clone/"
+rootPath = "/disk2/Xia/GitHubProjects/3Clone/"
 #years = ["2012-2014/","2011/","2015/","2017/","2016/"]
 years = ["2011/"]
 archiveInfor = "archiveInfo.txt"
@@ -30,18 +31,14 @@ for year in years:
 					fixedCommitAndMessage = fixedCommit + fixedMessage
 					if fixedCommitAndMessage not in commitDic:
 						files = []
-						files.append(commitInforFile)
+						files.append(commitPath)
 						commitDic[fixedCommitAndMessage] = files
 					else:
-						commitDic[fixedCommitAndMessage].append(commitInforFile)
+						commitDic[fixedCommitAndMessage].append(commitPath)
 for key in commitDic.keys():
 	length = len(commitDic[key])
-	if length>1:
-		for i in range(1,length):
-			print(key)
-			print(commitDic[key])
-			os.rename(commitDic[key] + "buggy-version", commitDic[key] + "buggy-versionDUPLICATE")
-			os.rename(commitDic[key] + "fixed-version", commitDic[key] + "fixed-versionDUPLICATE")
-		
+	if length>0:
+		for i in range(1,length):			
+			shutil.rmtree(commitDic[key][i])
 
 		
