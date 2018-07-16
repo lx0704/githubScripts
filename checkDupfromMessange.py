@@ -5,7 +5,7 @@ import shutil
 
 rootPath = "/disk2/Xia/GitHubProjects/3Clone/"
 #years = ["2012-2014/","2011/","2015/","2017/","2016/"]
-years = ["2015/"]
+years = ["2012-2014/"]
 archiveInfor = "archiveInfo.txt"
 
 
@@ -36,20 +36,20 @@ for year in years:
 					else:
 						commitDic[fixedCommitAndMessage].append(commitPath)
 
-for key in commitDic.keys():
-	length = len(commitDic[key])
-	if length > 1:
-		for i in range(1,length):			
-			shutil.rmtree(commitDic[key][i])
-
-# commitMultiple = 0
-# commitSingle = 0		
 # for key in commitDic.keys():
-#  	length = len(commitDic[key])
-#  	if length>1:
-#  		commitMultiple = commitMultiple + 1
-#  	if length == 1:
-#  		commitSingle = commitSingle + 1 
-# print(commitSingle)
-# print(commitMultiple)
-# print(len(commitDic))
+# 	length = len(commitDic[key])
+# 	if length > 1:
+# 		for i in range(1,length):			
+# 			shutil.rmtree(commitDic[key][i])
+
+commitMultiple = 0
+commitSingle = 0		
+for key in commitDic.keys():
+ 	length = len(commitDic[key])
+ 	if length>1:
+ 		commitMultiple = commitMultiple + 1
+ 	if length == 1:
+ 		commitSingle = commitSingle + 1 
+print(commitSingle)
+print(commitMultiple)
+print(len(commitDic))
