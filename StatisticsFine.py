@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join
 import shutil
 
-FineResult = "/disk2/Xia/GitHubProjects/4gumtree/Statistics/SparkResults/FineGrained/part-00000"
+FineResult = "/disk2/Xia/GitHubProjects/4gumtree/Statistics/SparkResults/FinedPattern/part-00000"
 writePath = "/disk2/Xia/GitHubProjects/4gumtree/Statistics/Excels/"
 PatternCount = "/disk2/Xia/GitHubProjects/4gumtree/Statistics/SparkResults/GeneralPattern/GeneralPattern.csv"
 generalDic = dict()
@@ -19,11 +19,11 @@ with open(FineResult) as resultFile:
 		firstSemi = line.index(",")
 		generalPattern = line[2:firstSemi].replace("=>","TO")
 		lastIndex = line.rindex("),")
-		finedPattern = line[firstSemi + 1 : lastIndex]
+		finedPattern = line[firstSemi + 1 : lastIndex].replace("FORSPLITARGS","")
 		frequency = line[lastIndex + 2:-2]
-		writeFile = writePath + generalPattern + ".csv"
+		writeFile = writePath + generalPattern + ".txt"
 		with open(writeFile,'a') as wf:
 			if int(frequency) > 1:
-				wf.write(finedPattern + "," + frequency + "," + str(float(frequency)/int(generalDic[generalPattern])))
+				wf.write(finedPattern + "||" + frequency + "||" + str(float(frequency)/int(generalDic[generalPattern])))
 				wf.write("\n")
 print(count)
