@@ -88,5 +88,5 @@ for apiurl in commitMap:
                 with open(writepath + "/"  + year + "/" + month + ".txt", "a") as writefile:
                     writefile.write(commitN)
                     writefile.write("\n")              
-
+print(year + " " + month + " commit and message done!!")
         
