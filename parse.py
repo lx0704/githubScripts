@@ -7,8 +7,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 year = sys.argv[1]
-rootpath = "/home/Xia/XiaLi/GitHubProjects/1Archive/"
-writepath = "/home/Xia/XiaLi/GitHubProjects/2Parse/"
+rootpath = "/media/disk2/Xia/GitHubProjects/1Archive/"
+writepath = "/media/disk2/Xia/GitHubProjects/2Parse/"
 urlandCommit = set()
 
 filecount = 1

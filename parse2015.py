@@ -20,14 +20,14 @@ def readtoken(tokenfile):
             token = line.split(" ")[0]
     return token
 
-rootpath = "/disk2/Xia/GitHubProjects/1Archive/"
-writepath = "/disk2/Xia/GitHubProjects/2Parse/commitandmessage/"
+rootpath = "/media/disk2/Xia/GitHubProjects/1Archive/"
+writepath = "/media/disk2/Xia/GitHubProjects/2Parse/commitandmessage/"
 
 year = sys.argv[1]  # 2011
 month = sys.argv[2] # 03,04...
 tokenNumber = sys.argv[3]
 
-tokenfile = "/disk2/Xia/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
+tokenfile = "/media/disk2/Xia/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
 tokenKey = readtoken(tokenfile)
 print(tokenKey)
 
@@ -61,7 +61,7 @@ for file in allfiles:
                         else:
                             if "message" in c:
                                 message = c["message"]
-                        if re.search(r'^(?=.*(bug|issue|problem|error))(?=.*(fix|solve)).+$', message, re.IGNORECASE): 
+                        if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE): 
                             if "shas" in d["payload"]:
                                 temCommits.add(apiurl + "==>" + c[0] + " [" + message + "]")
                             else:
