@@ -71,9 +71,10 @@ for file in allfiles:
                                 commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
                             else:
                                 commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
-                            print(commitInfor)
+                            
                             if commitInfor.replace("==>"," ") in CurrentData:
                                 print("EXISTS")
+                                print(commitInfor)
                             else:
                                 print("NOTEXISTS store")
                                 temCommits.add(commitInfor)  
