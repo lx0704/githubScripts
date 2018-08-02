@@ -33,7 +33,7 @@ print(tokenKey)
 
 CurrentPath = writepath + year + '/' + month + '.txt'
 CurrentData = util.readCurrent(CurrentPath)
-print("CURRENT DATA NUMBER:" + str(len(CurrentData))
+print("CURRENT DATA SIZE:" + str(len(CurrentData))
 
 
 filepath = rootpath + year
@@ -76,7 +76,7 @@ for file in allfiles:
                                 print("EXISTS")
                                 print(commitInfor)
                             else:
-                                temCommits.add(commitInfor) 
+                                temCommits.add(commitInfor)
 commitMap = util.changeToMap(temCommits)         
 for apiurl in commitMap:                                
     headers = {'Authorization': 'token ' + tokenKey}
