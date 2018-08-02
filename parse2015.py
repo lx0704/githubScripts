@@ -31,6 +31,10 @@ tokenfile = "/media/disk2/Xia/GitHubProjects/3Clone/readtokens/" + tokenNumber +
 tokenKey = readtoken(tokenfile)
 print(tokenKey)
 
+CurrentPath = writepath + year + '/' + month + '.txt'
+CurrentData = util.readCurrent(CurrentPath)
+print(len(CurrentData))
+
 
 filepath = rootpath + year
 allfiles = os.listdir(filepath)

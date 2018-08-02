@@ -43,6 +43,13 @@ def changeToMap(tempCommits):
         else:
             commitMap[url].add(commitsha)
     return commitMap
+def readCurrent(Path)
+    currentData = set()
+    with open(Path) as file:
+        for line in file:
+            currentData.add(line.strip())
+    return currentData
+
 
 
 
