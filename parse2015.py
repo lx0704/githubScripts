@@ -33,7 +33,7 @@ print(tokenKey)
 
 CurrentPath = writepath + year + '/' + month + '.txt'
 CurrentData = util.readCurrent(CurrentPath)
-print("CURRENT DATA SIZE:" + str(len(CurrentData))
+print("CURRENT DATA SIZE:" + str(len(CurrentData)))
 
 
 filepath = rootpath + year
