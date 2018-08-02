@@ -66,17 +66,17 @@ for file in allfiles:
                             if "message" in c:
                                 message = c["message"]
                         if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):
-                        	commitInfor = "" 
+                            commitInfor = "" 
                             if "shas" in d["payload"]:
-                            	commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
+                                commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
                             else:
-                            	commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
+                                commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
                             print(commitInfor)
                             if commitInfor.replace("==>"," ") in CurrentData:
-                            	print("EXISTS")
+                                print("EXISTS")
                             else:
-                            	print("NOTEXISTS store")
-                            	temCommits.add(commitInfor)  
+                                print("NOTEXISTS store")
+                                temCommits.add(commitInfor)  
 commitMap = util.changeToMap(temCommits)         
 for apiurl in commitMap:                                
     headers = {'Authorization': 'token ' + tokenKey}
