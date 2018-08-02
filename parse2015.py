@@ -72,7 +72,7 @@ for file in allfiles:
                             else:
                                 commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
                             
-                            if commitInfor.replace("==>"," ") + '.git' in CurrentData:
+                            if commitInfor.replace("==>",".git ") in CurrentData:
                                 print("EXISTS")
                                 print(commitInfor)
                             else:
