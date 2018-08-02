@@ -76,7 +76,6 @@ for file in allfiles:
                                 print("EXISTS")
                                 print(commitInfor)
                             else:
-                                print("NOTEXISTS store")
                                 temCommits.add(commitInfor)  
 commitMap = util.changeToMap(temCommits)         
 for apiurl in commitMap:                                
