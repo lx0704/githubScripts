@@ -34,6 +34,9 @@ print(tokenKey)
 CurrentPath = writepath + year + '/' + month + '.txt'
 CurrentData = util.readCurrent(CurrentPath)
 print("CURRENT DATA SIZE:" + str(len(CurrentData)))
+for i in CurrentData:
+    print(i)
+print("CURRENT DATA")
 
 
 filepath = rootpath + year
@@ -72,7 +75,7 @@ for file in allfiles:
                             else:
                                 commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
                             
-                            if commitInfor.replace("==>",".git ") in CurrentData:
+                            if commitInfor.split("==>")[1] in CurrentData:
                                 print("EXISTS")
                                 print(commitInfor)
                             else:

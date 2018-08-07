@@ -47,7 +47,9 @@ def readCurrent(Path):
     currentData = set()
     with open(Path) as file:
         for line in file:
-            currentData.add(line.strip())
+            url = line.split(" ")[0]
+            shaandMessage = line.split(url)[1]
+            currentData.add(shaandMessage)
     return currentData
 
 
