@@ -48,8 +48,8 @@ def readCurrent(Path):
     with open(Path) as file:
         for line in file:
             url = line.split(" ")[0]
-            shaandMessage = line.split(url)[1]
-            currentData.add(shaandMessage)
+            shaandMessage = line.split(url + " ")[1]
+            currentData.add(shaandMessage.strip())
     return currentData
 
 
