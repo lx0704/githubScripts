@@ -51,6 +51,13 @@ def readCurrent(Path):
             shaandMessage = line.split(url + " ")[1]
             currentData.add(shaandMessage.strip())
     return currentData
+def readNotJava(Path):
+    notJava = set()
+    with open(Path) as file:
+        for line in file:
+            notJava.add(line.strip())
+    return notJava
+
 
 
 

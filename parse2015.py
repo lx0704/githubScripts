@@ -90,17 +90,24 @@ for apiurl in commitMap:
             remainingNumber = util.getRemaining(tokenKey)
             print ("remainig number is " + remainingNumber + "not enough limit, sleep a while")
     print("remaining rate limit is:" + remainingNumber + " for " + tokenNumber)
-    login = requests.get(apiurl, headers = headers)
-    apiinfor = login.json()   
-    if "clone_url" in apiinfor:
-        url = apiinfor["clone_url"]
-        language = apiinfor["language"]
-        if language == "Java":
-            for commitsha in commitMap[apiurl]:
-                print(url + " " + commitsha)
-                commitN = url.replace("//","//api.").replace(".com/",".com/repos/") + " " + commitsha                                                      
-                with open(writepath + "/"  + year + "/" + month + ".txt", "a") as writefile:
-                    writefile.write(commitN)
-                    writefile.write("\n")              
+
+    notJavaurl = util.readNotJava(writepath + '/NonJavaURL/' + year + month + ".txt",'a')
+    if apiurl not in notJavaurl:
+        login = requests.get(apiurl, headers = headers)
+        apiinfor = login.json()   
+        if "clone_url" in apiinfor:
+            url = apiinfor["clone_url"]
+            language = apiinfor["language"]           
+            if language == "Java":
+                for commitsha in commitMap[apiurl]:
+                    print(url + " " + commitsha)
+                    commitN = url.replace("//","//api.").replace(".com/",".com/repos/") + " " + commitsha                                                      
+                    with open(writepath + "/"  + year + "/" + month + ".txt", "a") as writefile:
+                        writefile.write(commitN)
+                        writefile.write("\n")  
+            else:
+                with open(writepath + '/NonJavaURL/' + year + month + ".txt",'a') as nonJava:
+                    nonJava.write(apiurl)
+                    nonJava.write("\n")           
 print(year + " " + month + " commit and message done!!")
         
