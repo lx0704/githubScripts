@@ -80,7 +80,8 @@ for file in allfiles:
                                 print(commitInfor)
                             else:
                                 temCommits.add(commitInfor)
-commitMap = util.changeToMap(temCommits)         
+commitMap = util.changeToMap(temCommits)
+print("FINISH READ")        
 for apiurl in commitMap:                                
     headers = {'Authorization': 'token ' + tokenKey}
     remainingNumber = util.getRemaining(tokenKey)                       
