@@ -92,7 +92,7 @@ for apiurl in commitMap:
             print ("remainig number is " + remainingNumber + "not enough limit, sleep a while")
     print("remaining rate limit is:" + remainingNumber + " for " + tokenNumber)
 
-    notJavaurl = util.readNotJava(writepath + '/NonJavaURL/' + year + month + ".txt",'a')
+    notJavaurl = util.readNotJava(writepath + '/NonJavaURL/' + year + month + ".txt")
     if apiurl not in notJavaurl:
         login = requests.get(apiurl, headers = headers)
         apiinfor = login.json()   
