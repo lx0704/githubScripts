@@ -48,8 +48,7 @@ path = bugPath
 with open(path,'r') as file:
     count = 1 
     pairCount = 1     
-    for line in file:         
-        #print(year + " " + partation + " is processing")       
+    for line in file:           
         url = line.split(" ")[0]
         fixcommit = line.split(" ")[1].strip()
         apiurl = url + "/commits/" + fixcommit
@@ -72,6 +71,6 @@ with open(path,'r') as file:
             getInfoFromFixCommit(apiinfor,fixcommit,eachPairPath,url)
             pairCount = pairCount + 1
         
-print(year + " " + partation + " archiveInfo.txt DONE!!!!")        
+print(partation + " archiveInfo.txt DONE!!!!")        
 
 
