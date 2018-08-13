@@ -33,17 +33,16 @@ def getInfoFromFixCommit(apiinfor,fixcommit,eachPairPath,apiurl):
 
             
             
-year = sys.argv[1]
-partation = sys.argv[2]
-tokenNumber = sys.argv[3]
+partation = sys.argv[1]
+tokenNumber = sys.argv[2]
 
-tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
+tokenfile = "/media/disk2/Xia/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
 tokens = readtoken(tokenfile)
 print(tokens)
 
-bugPath = "/home/Xia/XiaLi/GitHubProjects/2Parse/partations/"+ year + "/" + partation + ".txt"
-clonerootPath = "/home/Xia/XiaLi/GitHubProjects/3Clone/" 
-clonePath = clonerootPath + year + "/" + partation
+bugPath = "/media/disk2/Xia/GitHubProjects/2Parse/partations/NewFull2011-2017/" + partation + ".txt"
+clonerootPath = "/media/disk2/Xia/GitHubProjects/3Clone/NewFull2011-2017/" 
+clonePath = clonerootPath + "/" + partation
 
 path = bugPath
 with open(path,'r') as file:
@@ -67,7 +66,7 @@ with open(path,'r') as file:
         count = count + 1
         if "url" in apiinfor:
             sys.stdout.write("token remaining:" + remainingNumber + " ") 
-            print(year + " " + partation + " pairCount " + str(pairCount) + " " + partation + " " + tokenNumber)           
+            print(partation + " pairCount " + str(pairCount) + " " + partation + " " + tokenNumber)           
             eachPairPath = clonePath + "/" + str(pairCount)           
             util.createPath(eachPairPath)
             getInfoFromFixCommit(apiinfor,fixcommit,eachPairPath,url)
