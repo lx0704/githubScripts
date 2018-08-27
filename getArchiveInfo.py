@@ -20,16 +20,17 @@ def getInfoFromFixCommit(apiinfor,fixcommit,eachPairPath,apiurl):
     commiter = apiinfor["commit"]["committer"]["name"]
     date = apiinfor["commit"]["author"]["date"]
     bugcommits = apiinfor["parents"]
-    bugs = bugcommits[0]        
-    with open(eachPairPath + "/archiveInfo.txt",'a') as infoPath: 
-        bugcommit = bugs["sha"]
-        infoPath.write("Project url:" + apiurl + "\n")   
-        infoPath.write("Buggy-version:" + bugcommit + "\n")
-        infoPath.write("Fixed-version:" + fixcommit + "\n")
-        infoPath.write("Fixed commit message:" + message + "\n")
-        infoPath.write("Date:" + date + "\n")
-        infoPath.write("Author:" + author + "\n")
-        infoPath.write("Commiter:" + commiter + "\n")
+    if len(bugcommits) > 0:
+	    bugs = bugcommits[0]        
+	    with open(eachPairPath + "/archiveInfo.txt",'a') as infoPath: 
+	        bugcommit = bugs["sha"]
+	        infoPath.write("Project url:" + apiurl + "\n")   
+	        infoPath.write("Buggy-version:" + bugcommit + "\n")
+	        infoPath.write("Fixed-version:" + fixcommit + "\n")
+	        infoPath.write("Fixed commit message:" + message + "\n")
+	        infoPath.write("Date:" + date + "\n")
+	        infoPath.write("Author:" + author + "\n")
+	        infoPath.write("Commiter:" + commiter + "\n")
 
             
             
