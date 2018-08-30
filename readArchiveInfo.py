@@ -33,9 +33,8 @@ def readArchiveInfo(path):
 
 
 partation = sys.argv[1]
-year = sys.argv[2]
 
-archiveInfoPath = "/home/Xia/XiaLi/GitHubProjects/3Clone/" + year + "/" + partation
+archiveInfoPath = "/media/disk2/Xia/GitHubProjects/3Clone/%s"%partation
 allfiles = os.listdir(archiveInfoPath)
 tokenindex = 0
 filecount = 0
