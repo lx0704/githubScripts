@@ -8,15 +8,14 @@ import time
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-year = sys.argv[1]
-partation = sys.argv[2]
-tokenNumber = sys.argv[3]
+partation = sys.argv[1]
+tokenNumber = sys.argv[2]
 
-tokenfile = "/home/Xia/XiaLi/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
+tokenfile = "/media/disk2/Xia/GitHubProjects/3Clone/readtokens/" + tokenNumber + ".txt"
 tokenKey = util.readComaretoken(tokenfile)
 print(tokenKey)
 
-archiveInfoPath = "/home/Xia/XiaLi/GitHubProjects/3Clone/" + year + "/" + partation
+archiveInfoPath = "/media/disk2/Xia/GitHubProjects/3Clone/NewFull2011-2017/" + partation
 allfiles = os.listdir(archiveInfoPath)
 
 tokenindex = 0
