@@ -29,6 +29,7 @@ def cdAndWget(Dowurl, pairpath, pathName):
 def getRemaining(tokenKey):
     command = "curl -H" + "\"Authorization: token " + tokenKey + "\" -X GET https://api.github.com/rate_limit"
     output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+    print(output)
     remainingNumber = output.split("remaining\": ")[1].split(",\n")[0]  
     return remainingNumber
 def changeToMap(tempCommits):
