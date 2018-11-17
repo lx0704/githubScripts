@@ -16,7 +16,6 @@ def listfiles(partationpath,years):
                     count = count + 1
 
     print(count)
-    print(len(newCommits))
     return newCommits
 
 
@@ -26,31 +25,31 @@ BigCommits = listfiles(partationpath,years)
 print(len(BigCommits))
 
 
-# path2016 = "/home/Xia/XiaLi/GitHubProjects/2Parse/commitandmessage/"
-# years2016 = ["2016"]
-# Commits2016 = listfiles(path2016,years2016)
-# print(list(Commits2016)[0])
+path2018 = "/media/disk2/Xia/GitHubProjects/2Parse/commitandmessage/"
+years2018 = ["2018"]
+Commits2018 = listfiles(path2018,years2018)
+print(len(Commits2018))
 
-partationSize = 10000
-partionpath = "/media/disk2/Xia/GitHubProjects/2Parse/partations/NewFull2011-2017"
+# partationSize = 10000
+# partionpath = "/media/disk2/Xia/GitHubProjects/2Parse/partations/NewFull2011-2017"
 
 
-count = 1       
-fileNumber = 1  
-uniqueCount = 0
+# count = 1       
+# fileNumber = 1  
+# uniqueCount = 0
 
-for key in BigCommits:
-    uniqueCount = uniqueCount + 1
-    filename = partionpath + "/V" + str(fileNumber) + ".txt"
-    with open(filename,"a") as writefile:
-        writefile.write(BigCommits[key].strip())
-        writefile.write("\n")
-        if count < partationSize:               
-            count = count + 1
-        else:
-            fileNumber = fileNumber + 1
-            count = 1
-print(uniqueCount)
+# for key in BigCommits:
+#     uniqueCount = uniqueCount + 1
+#     filename = partionpath + "/V" + str(fileNumber) + ".txt"
+#     with open(filename,"a") as writefile:
+#         writefile.write(BigCommits[key].strip())
+#         writefile.write("\n")
+#         if count < partationSize:               
+#             count = count + 1
+#         else:
+#             fileNumber = fileNumber + 1
+#             count = 1
+# print(uniqueCount)
 
         
 
