@@ -41,8 +41,8 @@ tokenfile = "/media/disk2/Xia/GitHubProjects/3Clone/readtokens/" + tokenNumber +
 tokens = readtoken(tokenfile)
 print(tokens)
 
-bugPath = "/media/disk2/Xia/GitHubProjects/2Parse/partations/NewFull2011-2017/" + partation + ".txt"
-clonerootPath = "/media/disk2/Xia/GitHubProjects/3Clone/NewFull2011-2017/" 
+bugPath = "/media/disk2/Xia/GitHubProjects/2Parse/partations/NewDown2018/" + partation + ".txt"
+clonerootPath = "/media/disk2/Xia/GitHubProjects/3Clone/NewDown2018/" 
 clonePath = clonerootPath + "/" + partation
 
 path = bugPath

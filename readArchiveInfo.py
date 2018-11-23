@@ -34,7 +34,7 @@ def readArchiveInfo(path):
 
 partation = sys.argv[1]
 
-archiveInfoPath = "/media/disk2/Xia/GitHubProjects/3Clone/NewFull2011-2017/%s"%partation
+archiveInfoPath = "/media/disk2/Xia/GitHubProjects/3Clone/NewDown2018/%s"%partation
 allfiles = os.listdir(archiveInfoPath)
 tokenindex = 0
 filecount = 0

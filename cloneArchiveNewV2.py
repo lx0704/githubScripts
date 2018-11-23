@@ -15,7 +15,7 @@ tokenfile = "/media/disk2/Xia/GitHubProjects/3Clone/readtokens/" + tokenNumber +
 tokenKey = util.readComaretoken(tokenfile)
 print(tokenKey)
 
-archiveInfoPath = "/media/disk2/Xia/GitHubProjects/3Clone/NewFull2011-2017/" + partation
+archiveInfoPath = "/media/disk2/Xia/GitHubProjects/3Clone/NewDown2018/" + partation
 allfiles = os.listdir(archiveInfoPath)
 
 tokenindex = 0
