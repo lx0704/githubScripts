@@ -11,7 +11,6 @@ year = sys.argv[1]
 rootpath = "/media/disk6TV1/Xia/GitHubProjects/1Archive/"
 writepath = "/media/disk2/Xia/GitHubProjectsJIRA/2Parse/"
 JIRA_set = util.read_JIRAData("/media/disk2/Xia/GitHubProjectsJIRA/2Parse/jiraBug.txt")
-print(JIRA_set)
 
 urlandCommit = set()
 
@@ -34,7 +33,8 @@ for file in allfiles:
                                 message = commit[2]
                                 #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):  
                                 for bug_id in JIRA_set:
-                                    if bug_id in message:   
+                                    if bug_id in message:
+                                        print(bug_id)
                                         urlcommit = url + " " + commit[0]                                
                                         if urlcommit not in urlandCommit:
                                             urlandCommit.add(urlcommit)
