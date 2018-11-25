@@ -58,6 +58,14 @@ def readNotJava(Path):
         for line in file:
             notJava.add(line.strip())
     return notJava
+def read_JIRAData(path):
+    JIRA_set = set()
+    with open(path) as file:
+        for line in file:
+            JIRA_set.add(line.strip())
+    return JIRA_set
+
+
 
 
 

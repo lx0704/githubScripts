@@ -9,6 +9,9 @@ sys.setdefaultencoding("utf-8")
 year = sys.argv[1]
 rootpath = "/media/disk2/Xia/GitHubProjects/1Archive/"
 writepath = "/media/disk2/Xia/GitHubProjects/2Parse/"
+JIRA_set = util.read_JIRAData("/media/disk2/Xia/GitHubProjectsJIRA/2Parse/jiraBug.txt")
+print(JIRA_set)
+
 urlandCommit = set()
 
 filecount = 1
