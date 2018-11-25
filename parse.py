@@ -3,6 +3,7 @@ import gzip
 import re
 import os
 import sys
+import util
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
