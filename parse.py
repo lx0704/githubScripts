@@ -30,7 +30,7 @@ for file in allfiles:
                         if "payload" in d and "shas" in d["payload"]:
                             commits = d["payload"]["shas"]                
                             for commit in commits:
-                                message = commit[2]
+                                message = commit[2].replace("\n"," ")
                                 #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):  
                                 for bug_id in JIRA_set:
                                     if bug_id in message:
