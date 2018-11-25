@@ -33,7 +33,7 @@ for file in allfiles:
                                 message = commit[2].replace("\n"," ")
                                 #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):  
                                 for bug_id in JIRA_set:
-                                    if bug_id in message:
+                                    if message.startswith(bug_id):
                                         print(bug_id)
                                         urlcommit = url + " " + commit[0]                                
                                         if urlcommit not in urlandCommit:
