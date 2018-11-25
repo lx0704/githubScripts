@@ -7,8 +7,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 year = sys.argv[1]
-rootpath = "/media/disk2/Xia/GitHubProjects/1Archive/"
-writepath = "/media/disk2/Xia/GitHubProjects/2Parse/"
+rootpath = "/media/disk6TV1/Xia/GitHubProjects/1Archive/"
+writepath = "/media/disk2/Xia/GitHubProjectsJIRA/2Parse/"
 JIRA_set = util.read_JIRAData("/media/disk2/Xia/GitHubProjectsJIRA/2Parse/jiraBug.txt")
 print(JIRA_set)
 
@@ -31,14 +31,16 @@ for file in allfiles:
                             commits = d["payload"]["shas"]                
                             for commit in commits:
                                 message = commit[2]
-                                if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):  
-                                    urlcommit = url + " " + commit[0]                                
-                                    if urlcommit not in urlandCommit:
-                                        urlandCommit.add(urlcommit)
-                                        with open(writepath + "/commitandmessage/" + year + ".txt", "a") as writefile:
-                                            urlcommit = urlcommit.replace("//","//api.").replace(".com/",".com/repos/")
-                                            writefile.write(urlcommit + " [" + message + "]")
-                                            writefile.write("\n")
+                                #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):  
+                                for bug_id in JIRA_set:
+                                    if bug_id in message:   
+                                        urlcommit = url + " " + commit[0]                                
+                                        if urlcommit not in urlandCommit:
+                                            urlandCommit.add(urlcommit)
+                                            with open(writepath + "/commitandmessage/" + year + ".txt", "a") as writefile:
+                                                urlcommit = urlcommit.replace("//","//api.").replace(".com/",".com/repos/")
+                                                writefile.write(urlcommit + " [" + message + "]")
+                                                writefile.write("\n")
                 
 
         
