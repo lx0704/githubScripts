@@ -19,7 +19,7 @@ filecount = 1
 filepath = rootpath + year
 allfiles = os.listdir(filepath)
 for file in allfiles:
-    print("file count: " + str(filecount) + " files")
+    print(file)
     filecount = filecount + 1       
     with gzip.open(filepath + "/" + file, "rb") as f:
         for line in f.readlines():
