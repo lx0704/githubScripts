@@ -11,7 +11,7 @@ import time
 #curl -H "Authorization: token " -X GET https://api.github.com/rate_limit
 reload(sys)
 sys.setdefaultencoding("utf-8")
-
+JIRA_set = util.read_JIRAData("/media/disk2/Xia/GitHubProjectsJIRA/2Parse/jiraBug.txt")
 
 def readtoken(tokenfile):
     with open(tokenfile) as f:
@@ -20,8 +20,8 @@ def readtoken(tokenfile):
             token = line.split(" ")[0]
     return token
 
-rootpath = "/media/disk2/Xia/GitHubProjects/1Archive/"
-writepath = "/media/disk2/Xia/GitHubProjects/2Parse/commitandmessage/"
+rootpath = "/media/disk6TV1/Xia/GitHubProjects/1Archive/"
+writepath = "/media/disk2/Xia/GitHubProjectsJIRA/2Parse/commitandmessage/"
 
 year = sys.argv[1]  # 2011
 month = sys.argv[2] # 03,04...
@@ -68,18 +68,22 @@ for file in allfiles:
                         else:
                             if "message" in c:
                                 message = c["message"]
-                        if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):
-                            commitInfor = "" 
-                            if "shas" in d["payload"]:
-                                commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
-                            else:
-                                commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
-                            
-                            if commitInfor.split("==>")[1] in CurrentData:
-                                print("EXISTS")
-                                print(commitInfor)
-                            else:
-                                temCommits.add(commitInfor)
+                        #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):
+                        for bug_id in JIRA_set:
+                            message = message.replace("\n"," ")
+                            if message.startswith(bug_id + " "):
+                                print(bug_id)
+                                commitInfor = "" 
+                                if "shas" in d["payload"]:
+                                    commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
+                                else:
+                                    commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
+                                
+                                if commitInfor.split("==>")[1] in CurrentData:
+                                    print("EXISTS")
+                                    print(commitInfor)
+                                else:
+                                    temCommits.add(commitInfor)
 commitMap = util.changeToMap(temCommits)
 print("FINISH READ")        
 for apiurl in commitMap:                                
