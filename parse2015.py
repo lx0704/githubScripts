@@ -69,21 +69,21 @@ for file in allfiles:
                             if "message" in c:
                                 message = c["message"]
                         #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):
-                        for bug_id in JIRA_set:
-                            message = message.replace("\n"," ")
-                            if message.startswith(bug_id + " "):
-                                print(bug_id)
-                                commitInfor = "" 
-                                if "shas" in d["payload"]:
-                                    commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
-                                else:
-                                    commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
-                                
-                                if commitInfor.split("==>")[1] in CurrentData:
-                                    print("EXISTS")
-                                    print(commitInfor)
-                                else:
-                                    temCommits.add(commitInfor)
+                        message = message.replace("\n"," ")
+                        message_bug = message.split(" ")[0]
+                        if message_bug in JIRA_set
+                            print(bug_id)
+                            commitInfor = "" 
+                            if "shas" in d["payload"]:
+                                commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
+                            else:
+                                commitInfor = apiurl + "==>" + c["sha"]+ " [" + message + "]"
+                            
+                            if commitInfor.split("==>")[1] in CurrentData:
+                                print("EXISTS")
+                                print(commitInfor)
+                            else:
+                                temCommits.add(commitInfor)
 commitMap = util.changeToMap(temCommits)
 print("FINISH READ")        
 for apiurl in commitMap:                                
