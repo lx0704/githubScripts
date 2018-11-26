@@ -71,8 +71,8 @@ for file in allfiles:
                         #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):
                         message = message.replace("\n"," ")
                         message_bug = message.split(" ")[0]
-                        if message_bug in JIRA_set
-                            print(bug_id)
+                        if message_bug in JIRA_set:
+                            print(message_bug)
                             commitInfor = "" 
                             if "shas" in d["payload"]:
                                 commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
