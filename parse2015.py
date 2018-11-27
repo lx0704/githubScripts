@@ -72,7 +72,7 @@ for file in allfiles:
                         message_sets = message.replace("\n"," ").split(" ")
                         common = set(message_sets).intersection(set(JIRA_set))
                         if len(common) > 0:
-                            print(message_bug)
+                            print(message)
                             commitInfor = "" 
                             if "shas" in d["payload"]:
                                 commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
