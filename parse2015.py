@@ -68,10 +68,10 @@ for file in allfiles:
                         else:
                             if "message" in c:
                                 message = c["message"]
-                        #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):
-                        message = message.replace("\n"," ")
-                        message_bug = message.split(" ")[0]
-                        if message_bug in JIRA_set:
+                        #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):                       
+                        message_sets = message.replace("\n"," ").split(" ")
+                        common = set(message_sets).intersection(set(JIRA_set))
+                        if len(common) > 0:
                             print(message_bug)
                             commitInfor = "" 
                             if "shas" in d["payload"]:
