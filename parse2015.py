@@ -69,7 +69,8 @@ for file in allfiles:
                             if "message" in c:
                                 message = c["message"]
                         #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):                       
-                        message_sets = message.replace("\n"," ").split(" ")
+                        message = message.replace("\n"," ")
+                        message_sets = message.split(" ")
                         is_common = False
                         for m in message_sets:
                         	if m in JIRA_set:
