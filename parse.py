@@ -32,8 +32,13 @@ for file in allfiles:
                             for commit in commits:
                                 message = commit[2].replace("\n"," ")
                                 #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):  
-                                for bug_id in JIRA_set:
-                                    if message.startswith(bug_id + " "):
+                                message_sets = message.split(" ")
+                        		is_common = False
+                        		for m in message_sets:
+                        			if m in JIRA_set:
+                        				is_common = True
+                        				break     
+                                if is_common:       
                                         print(bug_id)
                                         urlcommit = url + " " + commit[0]                                
                                         if urlcommit not in urlandCommit:
@@ -42,6 +47,6 @@ for file in allfiles:
                                                 urlcommit = urlcommit.replace("//","//api.").replace(".com/",".com/repos/")
                                                 writefile.write(urlcommit + " [" + message + "]")
                                                 writefile.write("\n")
-                
+print("DONEDONE!!")                
 
         
