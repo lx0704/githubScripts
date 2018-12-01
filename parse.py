@@ -33,11 +33,11 @@ for file in allfiles:
                                 message = commit[2].replace("\n"," ")
                                 #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):  
                                 message_sets = message.split(" ")
-                        		is_common = False
-                        		for m in message_sets:
-                        			if m in JIRA_set:
-                        				is_common = True
-                        				break     
+                                is_common = False
+                                for m in message_sets:
+                                    if m in JIRA_set:
+                                        is_common = True
+                                        break     
                                 if is_common:       
                                         print(bug_id)
                                         urlcommit = url + " " + commit[0]                                
