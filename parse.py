@@ -39,7 +39,7 @@ for file in allfiles:
                                         is_common = True
                                         break     
                                 if is_common:       
-                                        print(bug_id)
+                                        print(message)
                                         urlcommit = url + " " + commit[0]                                
                                         if urlcommit not in urlandCommit:
                                             urlandCommit.add(urlcommit)
