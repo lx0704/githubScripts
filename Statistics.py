@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join
 import shutil
 
-rootPath = "/disk2/Xia/GitHubProjects/3Clone/"
+rootPath = "/media/disk2/Xia/GitHubProjects/3Clone/"
 years = ["NewDown2011-2017/","NewDown2018/"]
 archiveInfor = "archiveInfo.txt"
 
