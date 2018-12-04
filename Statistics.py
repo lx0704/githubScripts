@@ -4,8 +4,8 @@ from os.path import isfile, join
 import shutil
 
 rootPath = "/disk2/Xia/GitHubProjects/3Clone/"
-#years = ["2012-2014/","2011/","2015/","2017/","2016/"]
-years = ["2012-2014/"]
+years = ["2012-2014/","2011/","2015/","2017/","2016/","2018/"]
+#years = ["2012-2014/"]
 archiveInfor = "archiveInfo.txt"
 
 print(years)
