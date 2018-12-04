@@ -4,28 +4,25 @@ from os.path import isfile, join
 import shutil
 
 rootPath = "/disk2/Xia/GitHubProjects/3Clone/"
-years = ["2012-2014/","2011/","2015/","2017/","2016/","2018/"]
-#years = ["2012-2014/"]
+years = ["NewDown2011-2017/","NewDown2018/"]
 archiveInfor = "archiveInfo.txt"
 
 print(years)
 commitByYear = dict()
 totalmeargeCount = 0
 for year in years:
-	yearPath = rootPath + year
+	yearPath = rootPath + year    # "/disk2/Xia/GitHubProjects/3Clone/NewDown2018"
 	partations = os.listdir(yearPath)
-	for partation in partations:
+	for partation in partations:			# "/disk2/Xia/GitHubProjects/3Clone/NewDown2018/V11"
 		partationPath = yearPath + partation + "/"
 		commitFolders = os.listdir(partationPath)
-		for commits in commitFolders:
+		for commits in commitFolders:          
 			commitYear = "'"
-			commitPath = partationPath + commits + "/"
+			commitPath = partationPath + commits + "/"  # "/disk2/Xia/GitHubProjects/3Clone/NewDown2018/V11/111"
 			commitInforFile = commitPath + archiveInfor
 			ifIncludeJava = 0
 			if isfile(commitInforFile):
 				with open(commitInforFile) as inforFile:
-					fixedCommit = ""
-					fixedMessage = ""
 					mergeCount = 0					
 					if os.path.isdir(commitPath + "buggy-version"):						
 						for line in inforFile:
@@ -35,7 +32,7 @@ for year in years:
 						allBuggyFiles = os.listdir(commitPath + "buggy-version")
 						#print(allBuggyFiles)
 						if mergeCount > 1:
-							print(commitPath)
+							#print(commitPath)
 							totalmeargeCount = totalmeargeCount + 1
 						for file in allBuggyFiles:
 							if file.endswith(".java"):
@@ -46,4 +43,4 @@ for year in years:
 					commitByYear[commitYear] = 1
 				else:
 					commitByYear[commitYear] = commitByYear[commitYear] + 1
-print(totalmeargeCount)				
+print(commitByYear)				
