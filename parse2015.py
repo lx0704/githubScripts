@@ -68,18 +68,7 @@ for file in allfiles:
                         else:
                             if "message" in c:
                                 message = c["message"]
-                        if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):                       
-                        '''
-                        message = message.replace("\n"," ")
-                        message_sets = message.split(" ")
-                        is_common = False
-                        for m in message_sets:
-                            if m in JIRA_set:
-                                is_common = True
-                                break                        
-                        if is_common:                    
-                            print(message)
-                        '''
+                        if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):
                             commitInfor = "" 
                             if "shas" in d["payload"]:
                                 commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
