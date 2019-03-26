@@ -11,7 +11,7 @@ import time
 #curl -H "Authorization: token " -X GET https://api.github.com/rate_limit
 reload(sys)
 sys.setdefaultencoding("utf-8")
-JIRA_set = util.read_JIRAData("/media/disk2/Xia/GitHubProjectsJIRA/2Parse/jiraBug.txt")
+#JIRA_set = util.read_JIRAData("/media/disk2/Xia/GitHubProjectsJIRA/2Parse/jiraBug.txt")
 
 def readtoken(tokenfile):
     with open(tokenfile) as f:
@@ -21,7 +21,7 @@ def readtoken(tokenfile):
     return token
 
 rootpath = "/media/disk6TV1/Xia/GitHubProjects/1Archive/"
-writepath = "/media/disk2/Xia/GitHubProjectsJIRA/2Parse/commitandmessage/"
+writepath = "/media/disk2/Xia/GitHubProjects/2Parse/commitandmessage/"
 
 year = sys.argv[1]  # 2011
 month = sys.argv[2] # 03,04...
@@ -68,7 +68,8 @@ for file in allfiles:
                         else:
                             if "message" in c:
                                 message = c["message"]
-                        #if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):                       
+                        if re.search(r'^(?=.*(bug|failure|issue|error|fault|defect|flaw|glitch))(?=.*(fix|solve|repair)).+$', message, re.IGNORECASE):                       
+                        '''
                         message = message.replace("\n"," ")
                         message_sets = message.split(" ")
                         is_common = False
@@ -76,8 +77,9 @@ for file in allfiles:
                         	if m in JIRA_set:
                         		is_common = True
                         		break                        
-                        if is_common:
+                        if is_common:                    
                             print(message)
+                        '''
                             commitInfor = "" 
                             if "shas" in d["payload"]:
                                 commitInfor = apiurl + "==>" + c[0] + " [" + message + "]"                                
