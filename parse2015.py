@@ -74,9 +74,9 @@ for file in allfiles:
                         message_sets = message.split(" ")
                         is_common = False
                         for m in message_sets:
-                        	if m in JIRA_set:
-                        		is_common = True
-                        		break                        
+                            if m in JIRA_set:
+                                is_common = True
+                                break                        
                         if is_common:                    
                             print(message)
                         '''
