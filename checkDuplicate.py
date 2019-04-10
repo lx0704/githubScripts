@@ -20,22 +20,22 @@ def listfiles(partationpath,years):
 
 
 partationpath = "/media/disk2/Xia/GitHubProjects/2Parse/commitandmessage/"
-years = ["2012-2014/","2011/","2015/","2017/","2016/"]
+years = ["2012-2014/","2011/","2015/","2017/","2016/","2018/"]
 BigCommits = listfiles(partationpath,years)
 print(len(BigCommits))
 
 
 path2018 = "/media/disk2/Xia/GitHubProjects/2Parse/commitandmessage/"
-years2018 = ["2018"]
+years2018 = ["201811-12"]
 Commits2018 = listfiles(path2018,years2018)
 print(len(Commits2018))
 
 partationSize = 10000
-partionpath = "/media/disk2/Xia/GitHubProjects/2Parse/partations/NewFull2018"
+partionpath = "/media/disk2/Xia/GitHubProjects/2Parse/partations/NewDown201811-12"
 
 
 count = 1       
-fileNumber = 141 
+fileNumber = 171 
 uniqueCount = 0
 
 for key in Commits2018:
